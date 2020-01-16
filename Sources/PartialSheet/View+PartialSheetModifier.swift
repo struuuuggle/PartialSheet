@@ -26,6 +26,7 @@ extension View {
 		handlerBarColor: Color = Color.gray,
 		enableCover: Bool = true,
 		coverColor: Color = Color.black.opacity(0.4),
+        onDismiss: (() -> Void)? = nil,
 		view: @escaping () -> SheetContent ) -> some View {
 		self.modifier(
 			PartialSheet(
@@ -34,6 +35,7 @@ extension View {
 				handlerBarColor: handlerBarColor,
 				enableCover: enableCover,
 				coverColor: coverColor,
+                onDismiss: onDismiss,
 				view: view
 			)
 		)

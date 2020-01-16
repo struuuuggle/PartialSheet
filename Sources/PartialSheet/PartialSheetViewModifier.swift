@@ -28,6 +28,9 @@ struct PartialSheet<SheetContent>: ViewModifier where SheetContent: View {
     /// The color of the cover
     var coverColor: Color
     
+    /// The action called when the Partial Sheet will disappear
+    var onDismiss: (() -> Void)?
+
     var view: () -> SheetContent
     
     // MARK: - Private Properties
@@ -160,6 +163,9 @@ struct PartialSheet<SheetContent>: ViewModifier where SheetContent: View {
                         nil : .interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
                     .gesture(drag)
             }
+        }
+        .onDisappear {
+            self.onDismiss?()
         }
     }
     
